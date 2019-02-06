@@ -16,9 +16,11 @@
 namespace Application {
     class App {
     public:
+        static void initialize();
         static Config config;
         static void loadConfig();
         static void saveConfig();
+        static volatile unsigned int timestamp;
     private:
     };
 }

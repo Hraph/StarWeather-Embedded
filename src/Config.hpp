@@ -22,9 +22,9 @@ namespace Application {
     class Config {
         public:
             uint8_t mode = 0;
-            uint8_t frequencySensor_A = 0;
-            uint8_t frequencySensor_B = 0;
-            uint8_t frequencySensor_C = 0;
+            uint8_t frequencySensor_A = 1;
+            uint8_t frequencySensor_B = 1;
+            uint8_t frequencySensor_C = 1;
             uint8_t delay_Mode_2 = 0;
     };
 }

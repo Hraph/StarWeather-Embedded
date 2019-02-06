@@ -20,7 +20,7 @@ namespace Communication {
 	    return 0;
     }
 
-    unsigned char USART::receivedBuffer = '\0'; // Empty buffer
+    volatile unsigned char USART::receivedBuffer = '\0'; // Empty buffer
 
     ISR(USART_RX_vect){
         // Check for error

@@ -12,7 +12,7 @@ namespace Communication {
     class USART {
     public:
         static void initialize();
-        static unsigned char receivedBuffer;
+        static volatile unsigned char receivedBuffer;
     private:
         inline static void send(char data);
         inline static int send(char data, FILE*); 
