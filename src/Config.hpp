@@ -18,7 +18,7 @@ namespace Memory {
     };
 }
 
-namespace App {
+namespace Application {
     class Config {
         public:
             uint8_t mode = 0;
