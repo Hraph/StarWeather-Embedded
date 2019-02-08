@@ -21,7 +21,7 @@ namespace Application {
         static Config config;
         static void loadConfig();
         static void saveConfig();
-        static volatile unsigned int timestamp;
+        static volatile uint32_t timestamp;
     private:
     };
 }
