@@ -17,6 +17,7 @@ namespace Communication {
         static void initialize();
         static CircularBuffer<unsigned char, 2> receiveBuffer;
         inline static void send(char data);
+        static void debug(const char *data);
     private:
         inline static int send(char data, FILE*); 
     };

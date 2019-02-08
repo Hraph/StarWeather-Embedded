@@ -1,4 +1,5 @@
 #include "Monitor.hpp"
+#include "USART.hpp"
 
 namespace Communication {
     void Monitor::sendCommandResponse(uint8_t commandType, uint8_t responseCode){

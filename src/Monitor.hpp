@@ -2,7 +2,6 @@
 #define MONITOR_H
 
 #include <Arduino.h>
-#include "USART.hpp"
 #include "Config.hpp"
 
 #ifdef DEBUG_COMMANDS
@@ -33,7 +32,7 @@
 #define COMMAND_SEND_MODE1_DATA 0x9
 #define COMMAND_SEND_MODE2_DATA 0xA
 #define COMMAND_GET_CONFIG 0xB
-#define COMMAND_DEBUG_GET_FREQUENCIES 0xF
+#define COMMAND_DEBUG 0xF
 #endif
 
 #define COMMAND_RESPONSE_SUCCESS 0x0

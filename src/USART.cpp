@@ -1,4 +1,5 @@
 #include "USART.hpp"
+#include "Monitor.hpp"
 
 namespace Communication {
     void USART::initialize(){
@@ -13,6 +14,10 @@ namespace Communication {
     void USART::send(char data){
         while (!(UCSR0A & (1 << UDRE0))); // Wait for empty send buffer
 	    UDR0 = data; // Write byte to send
+    }
+
+    void USART::debug(const char *data){
+        printf("%c%s", COMMAND_DEBUG, data);
     }
 
     int USART::send(char data, FILE*){
