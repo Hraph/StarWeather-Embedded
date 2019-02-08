@@ -20,13 +20,13 @@ namespace Communication {
 	    return 0;
     }
 
-    volatile unsigned char USART::receivedBuffer = '\0'; // Empty buffer
+    CircularBuffer<unsigned char, 2, unsigned char> USART::receiveBuffer; // Empty buffer
 
     ISR(USART_RX_vect){
         // Check for error
         if((UCSR0A & ((1 << FE0) | (1 << DOR0) | (1 << UPE0))) == 0) // Check frame error / data over run / parity error
         {
-            USART::receivedBuffer = UDR0; // Save data
+            USART::receiveBuffer.push(UDR0); // Save data
         }
     }
 }
