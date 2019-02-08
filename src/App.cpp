@@ -18,14 +18,20 @@ namespace Application {
         App::timestamp++;
 
         if (App::timestamp % int(1000 / App::config.frequencySensor_A) == 0) {
+            IO::Analog::checkValueFlags[0] = true; // Ask for a new value
+            
             ADMUX = (0b01 << REFS0) | SENSOR_ADDRESS_A; // Change multiplexer channel
             ADCSRA |= (1 << ADSC); // Launch ADC converter
         }
         if (App::timestamp % int(1000 / App::config.frequencySensor_B) == 0) {
+            IO::Analog::checkValueFlags[1] = true; // Ask for a new value
+
             ADMUX = (0b01 << REFS0) | SENSOR_ADDRESS_B; // Change multiplexer channel
             ADCSRA |= (1 << ADSC); // Launch ADC converter
         }
         if (App::timestamp % int(1000 / App::config.frequencySensor_C) == 0) {
+            IO::Analog::checkValueFlags[1] = true; // Ask for a new value
+            
             ADMUX = (0b01 << REFS0) | SENSOR_ADDRESS_C; // Change multiplexer channel
             ADCSRA |= (1 << ADSC); // Launch ADC converter
         }

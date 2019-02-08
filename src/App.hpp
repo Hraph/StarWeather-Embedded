@@ -5,11 +5,12 @@
 
 #include "Config.hpp"
 #include "EEPROM.hpp"
+#include "Analog.hpp"
 
-#define SENSORS_COUNT 3
-#define SENSOR_ADDRESS_A 1
-#define SENSOR_ADDRESS_B 2
-#define SENSOR_ADDRESS_C 3
+#define APP_MODE_STOP 0
+#define APP_MODE_1 1
+#define APP_MODE_2 2
+#define APP_MODE_3 3
 
 #pragma once
 

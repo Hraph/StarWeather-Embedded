@@ -2,7 +2,7 @@
 #define ANALOG_H
 
 #include <Arduino.h>
-#include "App.hpp"
+#include "Config.hpp"
 
 #pragma once
 
@@ -12,6 +12,7 @@ namespace IO {
         static void initialize();
         static unsigned int values[SENSORS_COUNT];
         static bool updatedValueFlags[SENSORS_COUNT];
+        static bool checkValueFlags[SENSORS_COUNT];
     private:
     };
 }

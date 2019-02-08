@@ -3,6 +3,11 @@
 
 #include <Arduino.h>
 
+#define SENSORS_COUNT 3
+#define SENSOR_ADDRESS_A 1
+#define SENSOR_ADDRESS_B 2
+#define SENSOR_ADDRESS_C 3
+
 #define MEMORY_INITIALIZED_CONTENT 123
 
 #pragma once
