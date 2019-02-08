@@ -34,3 +34,6 @@
 .vscode/
 .pioenvs/
 .travis.yml
+test/README
+lib/README
+include/README
