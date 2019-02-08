@@ -3,6 +3,9 @@
 
 #include <Arduino.h>
 
+//#define DEBUG
+//#define DEBUG_COMMANDS
+
 /**
  * Sensors configuration
  */

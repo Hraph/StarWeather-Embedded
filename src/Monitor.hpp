@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include "USART.hpp"
 #include "Config.hpp"
+#include "App.hpp"
 
 #ifdef DEBUG_COMMANDS
 #define COMMAND_STOP_MODE 97 //a
@@ -18,7 +19,7 @@
 #define COMMAND_SEND_MODE1_DATA 106 //j
 #define COMMAND_SEND_MODE2_DATA 107 //k
 #define COMMAND_GET_CONFIG 108 //l
-#define COMMAND_DEBUG_GET_FREQUENCIES 109 //m
+#define COMMAND_DEBUG 109 //m
 
 #else
 #define COMMAND_STOP_MODE 0x0
@@ -33,7 +34,7 @@
 #define COMMAND_SEND_MODE1_DATA 0x9
 #define COMMAND_SEND_MODE2_DATA 0xA
 #define COMMAND_GET_CONFIG 0xB
-#define COMMAND_DEBUG_GET_FREQUENCIES 0xF
+#define COMMAND_DEBUG 0xF
 #endif
 
 #define COMMAND_RESPONSE_SUCCESS 0x0
@@ -45,7 +46,11 @@ namespace Communication {
         static void sendCommandResponse(uint8_t commandType, uint8_t responseCode);
         static void sendCommandData(uint8_t commandType, uint32_t data);
         static void sendConfig(Application::Config config);
+        inline static void processReceivedMonitorChar(uint8_t input);
+        inline static void processCommand(uint8_t commandType, uint8_t parameter = 0);
     private:
+        static bool isWaitingForParameterChar;
+        static uint8_t waitingCommand;
     };
 }
 

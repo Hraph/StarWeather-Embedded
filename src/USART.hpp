@@ -15,9 +15,9 @@ namespace Communication {
     class USART {
     public:
         static void initialize();
-        static CircularBuffer<unsigned char, 2> receiveBuffer;
-        inline static void send(char data);
+        static unsigned char waitForNextCharReceived();
     private:
+        inline static void send(char data);
         inline static int send(char data, FILE*); 
     };
 }
