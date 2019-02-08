@@ -96,11 +96,13 @@ void loop() {
 	if (!USART::receiveBuffer.isEmpty()){
 		switch(USART::receiveBuffer.shift()){
 			case COMMAND_STOP_MODE:
+				USART::debug("Stoping all");
 				App::config.mode = APP_MODE_STOP;
 				App::saveConfig();
 				Monitor::sendCommandResponse(COMMAND_STOP_MODE, COMMAND_RESPONSE_SUCCESS);
 				break;
 			case COMMAND_START_MODE_1:
+				USART::debug("Starting mode 1");
 				App::config.mode = APP_MODE_1;
 				App::saveConfig();
 				Monitor::sendCommandResponse(COMMAND_START_MODE_1, COMMAND_RESPONSE_SUCCESS);
@@ -135,6 +137,13 @@ void loop() {
 					Monitor::sendCommandResponse(COMMAND_CONFIGURE_FE_3, COMMAND_RESPONSE_SUCCESS);
 				else
 					Monitor::sendCommandResponse(COMMAND_CONFIGURE_FE_3, COMMAND_RESPONSE_FAILURE);		 
+				break;
+			case COMMAND_CONFIGURE_MODE_2:
+				USART::debug("configure timer");
+				if (readUSARTAndUpdateFrequency(App::config.delay_Mode_2)) 
+					Monitor::sendCommandResponse(COMMAND_CONFIGURE_MODE_2, COMMAND_RESPONSE_SUCCESS);
+				else
+					Monitor::sendCommandResponse(COMMAND_CONFIGURE_MODE_2, COMMAND_RESPONSE_FAILURE);		
 				break;
 			case COMMAND_GET_CONFIG:
 				USART::debug("SendingConfig");
