@@ -25,9 +25,9 @@ void setup() {
 	#endif // DEBUG (DEBUG)
 
 	App::loadConfig();
-	App::config.frequencySensor_A = 10;
-	App::config.frequencySensor_B = 15;
-	App::config.frequencySensor_C = 20;
+	App::config.frequencySensor_A = 2;
+	App::config.frequencySensor_B = 2;
+	App::config.frequencySensor_C = 2;
 	App::config.mode = APP_MODE_STOP;
 	#ifdef DEBUG
 		printf("MODE:%d - F1: %d - F2: %d -  F3: %d - DELAY MODE 2: %d\n", App::config.mode, App::config.frequencySensor_A, App::config.frequencySensor_B, App::config.frequencySensor_C, App::config.delay_Mode_2);
@@ -116,24 +116,28 @@ void loop() {
 				Monitor::sendCommandResponse(COMMAND_START_MODE_3, COMMAND_RESPONSE_SUCCESS);
 				break;
 			case COMMAND_CONFIGURE_FE_1:
+				USART::debug("configure frequency 1");
 				if (readUSARTAndUpdateFrequency(App::config.frequencySensor_A))
 					Monitor::sendCommandResponse(COMMAND_CONFIGURE_FE_1, COMMAND_RESPONSE_SUCCESS);
 				else
 					Monitor::sendCommandResponse(COMMAND_CONFIGURE_FE_1, COMMAND_RESPONSE_FAILURE);		 
 				break;
 			case COMMAND_CONFIGURE_FE_2:
+				USART::debug("configure frequency 2");
 				if (readUSARTAndUpdateFrequency(App::config.frequencySensor_B))
 					Monitor::sendCommandResponse(COMMAND_CONFIGURE_FE_2, COMMAND_RESPONSE_SUCCESS);
 				else
 					Monitor::sendCommandResponse(COMMAND_CONFIGURE_FE_2, COMMAND_RESPONSE_FAILURE);		 
 				break;
 			case COMMAND_CONFIGURE_FE_3:
+				USART::debug("configure frequency 3");
 				if (readUSARTAndUpdateFrequency(App::config.frequencySensor_C)) 
 					Monitor::sendCommandResponse(COMMAND_CONFIGURE_FE_3, COMMAND_RESPONSE_SUCCESS);
 				else
 					Monitor::sendCommandResponse(COMMAND_CONFIGURE_FE_3, COMMAND_RESPONSE_FAILURE);		 
 				break;
 			case COMMAND_GET_CONFIG:
+				USART::debug("SendingConfig");
 				Monitor::sendConfig(App::config);
 				break;
 		}

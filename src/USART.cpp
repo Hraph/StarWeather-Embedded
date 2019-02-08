@@ -17,7 +17,7 @@ namespace Communication {
     }
 
     void USART::debug(const char *data){
-        printf("%c%s", COMMAND_DEBUG, data);
+        printf("%c%s~", COMMAND_DEBUG, data);
     }
 
     int USART::send(char data, FILE*){
