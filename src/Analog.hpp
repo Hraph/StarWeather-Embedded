@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include "Config.hpp"
+#include "App.hpp"
 
 #pragma once
 
@@ -13,6 +14,11 @@ namespace IO {
         static unsigned int values[SENSORS_COUNT];
         static bool updatedValueFlags[SENSORS_COUNT];
         static bool checkValueFlags[SENSORS_COUNT];
+
+        // Inline functions must be defined in header to be recognized by the linker
+        static inline uint16_t concatValueWithSensor(uint16_t value, uint8_t sensor) {
+            return (value | (sensor << 10)); // Add sensor bits after 10bits of ADC value
+        }
     private:
     };
 }

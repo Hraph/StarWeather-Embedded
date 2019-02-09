@@ -14,6 +14,7 @@ namespace Application {
         TIMSK1 = (1 << TOIE1); // Activate interrupts
     }
 
+    // 1ms tick timer
     ISR(TIMER1_OVF_vect) {
         App::timestamp++;
 
@@ -42,14 +43,14 @@ namespace Application {
 
     void App::loadConfig(){
         if (Memory::EEPROM::read(MEMORY_ADDRESS_INITIALIZEDMEMORY) == MEMORY_INITIALIZED_CONTENT) { // Check if config has already been saved
-            App::config.mode = Memory::EEPROM::read(MEMORY_ADDRESS_MODE); // Mode
-            App::config.frequencySensor_A = Memory::EEPROM::read(MEMORY_ADDRESS_FREQUENCYSENSOR_A); // Frequency A
-            App::config.frequencySensor_B = Memory::EEPROM::read(MEMORY_ADDRESS_FREQUENCYSENSOR_B); // Frequency B
-            App::config.frequencySensor_C = Memory::EEPROM::read(MEMORY_ADDRESS_FREQUENCYSENSOR_C); // Frequency C
-            App::config.delay_Mode_2 = Memory::EEPROM::read(MEMORY_ADDRESS_DELAY_MODE_2); // Delay Mode 2
+            config.mode = Memory::EEPROM::read(MEMORY_ADDRESS_MODE); // Mode
+            config.frequencySensor_A = Memory::EEPROM::read(MEMORY_ADDRESS_FREQUENCYSENSOR_A); // Frequency A
+            config.frequencySensor_B = Memory::EEPROM::read(MEMORY_ADDRESS_FREQUENCYSENSOR_B); // Frequency B
+            config.frequencySensor_C = Memory::EEPROM::read(MEMORY_ADDRESS_FREQUENCYSENSOR_C); // Frequency C
+            config.delay_Mode_2 = Memory::EEPROM::read(MEMORY_ADDRESS_DELAY_MODE_2); // Delay Mode 2
 
             #ifdef DEBUG
-                printf("Configuration read from EEPROM");
+                printf("\nConfiguration read from EEPROM\n");
             #endif // DEBUG
         }
     }
@@ -57,11 +58,11 @@ namespace Application {
     void App::saveConfig(){
         Memory::EEPROM::write(MEMORY_ADDRESS_INITIALIZEDMEMORY, MEMORY_INITIALIZED_CONTENT); // Set initialized flag in memory
 
-        Memory::EEPROM::write(MEMORY_ADDRESS_MODE, App::config.mode); // Mode
-        Memory::EEPROM::write(MEMORY_ADDRESS_FREQUENCYSENSOR_A, App::config.frequencySensor_A); // Frequency A
-        Memory::EEPROM::write(MEMORY_ADDRESS_FREQUENCYSENSOR_B, App::config.frequencySensor_B); // Frequency B
-        Memory::EEPROM::write(MEMORY_ADDRESS_FREQUENCYSENSOR_C, App::config.frequencySensor_C); // Frequency C
-        Memory::EEPROM::write(MEMORY_ADDRESS_DELAY_MODE_2, App::config.delay_Mode_2); // Delay Mode 2
+        Memory::EEPROM::write(MEMORY_ADDRESS_MODE, config.mode); // Mode
+        Memory::EEPROM::write(MEMORY_ADDRESS_FREQUENCYSENSOR_A, config.frequencySensor_A); // Frequency A
+        Memory::EEPROM::write(MEMORY_ADDRESS_FREQUENCYSENSOR_B, config.frequencySensor_B); // Frequency B
+        Memory::EEPROM::write(MEMORY_ADDRESS_FREQUENCYSENSOR_C, config.frequencySensor_C); // Frequency C
+        Memory::EEPROM::write(MEMORY_ADDRESS_DELAY_MODE_2, config.delay_Mode_2); // Delay Mode 2
 
         #ifdef DEBUG
             printf("\nConfiguration saved\n");
@@ -69,5 +70,4 @@ namespace Application {
     }
 
     volatile uint32_t App::timestamp = 0;
-
 }

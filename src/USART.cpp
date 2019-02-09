@@ -10,21 +10,18 @@ namespace Communication {
         fdevopen(send, nullptr);
     }
 
-    void USART::send(char data){
-        while (!(UCSR0A & (1 << UDRE0))); // Wait for empty send buffer
-	    UDR0 = data; // Write byte to send
-    }
-
     int USART::send(char data, FILE*){
         send(data);
 	    return 0;
     }
 
-    unsigned char USART::waitForNextCharReceived(){
+    uint8_t USART::waitForNextCharReceived(){
         while(!(UCSR0A & (1 << RXC0)));
         if((UCSR0A & ((1 << FE0) | (1 << DOR0) | (1 << UPE0))) == 0) // Check frame error / data over run / parity error
         {
             return UDR0;
         }
+        return '\0';
     }
+
 }

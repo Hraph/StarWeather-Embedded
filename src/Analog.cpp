@@ -49,7 +49,7 @@ namespace IO {
             ADCSRA |= (1 << ADSC); // Launch ADC converter
         }
     }
-
+    
     unsigned int Analog::values[SENSORS_COUNT] = {0};
     bool Analog::updatedValueFlags[SENSORS_COUNT] = {false}; 
     bool Analog::checkValueFlags[SENSORS_COUNT] = {false}; 
