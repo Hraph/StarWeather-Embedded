@@ -4,7 +4,7 @@
 #include <avr/io.h>
 #include <stdio.h>
 
-#define BAUD 250000
+#define BAUD 76800
 #define UBRR_VALUE ((F_CPU/16/BAUD)-1)
 
 #define NULL_CHARACTER '\0'
