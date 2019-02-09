@@ -16,6 +16,7 @@ namespace Communication {
     public:
         static void initialize();
         static uint8_t waitForNextCharReceived();
+        static void debug(const char *data);
 
         // Inline functions must be defined in header to be recognized by the linker
         static inline void sendInt32(int32_t n){

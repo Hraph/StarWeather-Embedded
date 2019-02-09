@@ -1,4 +1,5 @@
 #include "USART.hpp"
+#include "Monitor.hpp"
 
 namespace Communication {
     void USART::initialize(){
@@ -8,6 +9,10 @@ namespace Communication {
         UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0); // Activate Send / Receive with IRQ
 
         fdevopen(send, nullptr);
+    }
+
+    void USART::debug(const char *data){
+        printf("%c%s~", COMMAND_DEBUG, data);
     }
 
     int USART::send(char data, FILE*){

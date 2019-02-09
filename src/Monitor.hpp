@@ -2,7 +2,6 @@
 #define MONITOR_H
 
 #include <Arduino.h>
-#include "USART.hpp"
 #include "Config.hpp"
 #include "App.hpp"
 

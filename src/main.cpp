@@ -54,6 +54,4 @@ void loop() {
 			USART::sendInt(Analog::concatValueWithSensor(Analog::values[2], SENSOR_ADDRESS_C));
 		}
 	}
-		}
-	}
 }
