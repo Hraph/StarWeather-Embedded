@@ -55,7 +55,7 @@ namespace Communication {
         switch(commandType){
 			case COMMAND_STOP_MODE:
                 #ifdef DEBUG
-                printf("\nSTOPPED\n");
+                USART::debug("stoping all");
                 #endif // DEBUG
 
 				Application::App::config.mode = APP_MODE_STOP;
@@ -64,7 +64,7 @@ namespace Communication {
 				break;
 			case COMMAND_START_MODE_1:
                 #ifdef DEBUG
-                printf("\nMODE 1\n");
+                USART::debug("starting mode 1");
                 #endif // DEBUG
 
 				Application::App::config.mode = APP_MODE_1;
@@ -73,7 +73,7 @@ namespace Communication {
 				break;
 			case COMMAND_START_MODE_2:
                 #ifdef DEBUG
-                printf("\nMODE 2\n");
+                USART::debug("starting mode 2");
                 #endif // DEBUG
 
 				Application::App::config.mode = APP_MODE_2;
@@ -82,7 +82,7 @@ namespace Communication {
 				break;
 			case COMMAND_START_MODE_3:
                 #ifdef DEBUG
-                printf("\nMODE 3\n");
+                USART::debug("starting mode 3");
                 #endif // DEBUG
 
 				Application::App::config.mode = APP_MODE_3;
@@ -92,7 +92,7 @@ namespace Communication {
 			case COMMAND_CONFIGURE_FE_1:
                 if (parameter >= 1 && parameter <= 20) {
                     #ifdef DEBUG
-                    printf("\nFE1 CONFIGURED\n");
+                    USART::debug("configure frequency 1");
                     #endif // DEBUG
 
                     Application::App::config.frequencySensor_A = parameter;
@@ -105,7 +105,7 @@ namespace Communication {
 			case COMMAND_CONFIGURE_FE_2:
 				if (parameter >= 1 && parameter <= 20) {
                     #ifdef DEBUG
-                    printf("\nFE2 CONFIGURED\n");
+                    USART::debug("configure frequency 2");
                     #endif // DEBUG
 
                     Application::App::config.frequencySensor_B = parameter;
@@ -118,7 +118,7 @@ namespace Communication {
 			case COMMAND_CONFIGURE_FE_3:
 				if (parameter >= 1 && parameter <= 20) {
                     #ifdef DEBUG
-                    printf("\nFE3 CONFIGURED\n");
+                    USART::debug("configure frequency 3");
                     #endif // DEBUG
 
                     Application::App::config.frequencySensor_C = parameter;
@@ -131,7 +131,7 @@ namespace Communication {
             case COMMAND_CONFIGURE_MODE_2:
 				if (parameter >= 1 && parameter <= 5) {
                     #ifdef DEBUG
-                    printf("\nDELAY MODE 2 CONFIGURED\n");
+                    USART::debug("configure timer");
                     #endif // DEBUG
 
                     Application::App::config.delay_Mode_2 = parameter;
@@ -143,7 +143,7 @@ namespace Communication {
 				break;
 			case COMMAND_GET_CONFIG:
                 #ifdef DEBUG
-                printf("\nGET_CONFIG\n");
+                USART::debug("sendingConfig");
                 #endif // DEBUG
 
 				Monitor::sendConfig(Application::App::config);

@@ -20,12 +20,12 @@ void setup() {
 	App::initialize();
 	Analog::initialize();
 
-	#ifdef DEBUG
+	#ifdef DEBUG_COMMANDS
 		printf("USART Initialized - Ready !\n");
 	#endif // DEBUG (DEBUG)
 
 	App::loadConfig();
-	#ifdef DEBUG
+	#ifdef DEBUG_COMMANDS
 		printf("MODE:%d - F1: %d - F2: %d -  F3: %d - DELAY MODE 2: %d\n", App::config.mode, App::config.frequencySensor_A, App::config.frequencySensor_B, App::config.frequencySensor_C, App::config.delay_Mode_2);
 	#endif // DEBUG
 

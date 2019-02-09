@@ -49,7 +49,7 @@ namespace Application {
             config.frequencySensor_C = Memory::EEPROM::read(MEMORY_ADDRESS_FREQUENCYSENSOR_C); // Frequency C
             config.delay_Mode_2 = Memory::EEPROM::read(MEMORY_ADDRESS_DELAY_MODE_2); // Delay Mode 2
 
-            #ifdef DEBUG
+            #ifdef DEBUG_COMMANDS
                 printf("\nConfiguration read from EEPROM\n");
             #endif // DEBUG
         }
@@ -64,7 +64,7 @@ namespace Application {
         Memory::EEPROM::write(MEMORY_ADDRESS_FREQUENCYSENSOR_C, config.frequencySensor_C); // Frequency C
         Memory::EEPROM::write(MEMORY_ADDRESS_DELAY_MODE_2, config.delay_Mode_2); // Delay Mode 2
 
-        #ifdef DEBUG
+        #ifdef DEBUG_COMMANDS
             printf("\nConfiguration saved\n");
         #endif // DEBUG
     }
