@@ -70,4 +70,6 @@ namespace Application {
     }
 
     volatile uint32_t App::timestamp = 0;
+
+    bool App::sendAllDataFlag = false;
 }

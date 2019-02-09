@@ -141,6 +141,13 @@ namespace Communication {
                 else
                     sendCommandResponse(COMMAND_CONFIGURE_MODE_2, COMMAND_RESPONSE_FAILURE);	
 				break;
+            case COMMAND_GET_DATA:
+                #ifdef DEBUG
+                USART::debug("sendData");
+                #endif // DEBUG
+
+				Application::App::sendAllDataFlag = true;
+				break;
 			case COMMAND_GET_CONFIG:
                 #ifdef DEBUG
                 USART::debug("sendingConfig");

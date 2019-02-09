@@ -1,9 +1,6 @@
 //Using ATmega328P
 #include<avr/interrupt.h>
 
-//#define DEBUG
-//#define DEBUG_COMMANDS
-
 #include "App.hpp"
 #include "USART.hpp"
 #include "Config.hpp"
@@ -32,6 +29,18 @@ void setup() {
 	sei(); // Allow interrupt
 }
 
+inline void printAllAnalogCachedBuffer(uint8_t command){
+	while(!Analog::cacheBuffer.isEmpty()){
+			uint32_t stored = Analog::cacheBuffer.shift();
+
+			USART::send(command);
+			USART::sendInt32((App::timestamp & ASSEMBLE_SHORT_TIMESTAMP_MASK) | ((stored & ASSEMBLE_SHORT_TIMESTAMP_MASK) >> 16)); // Assemble timestamp with splitted shortTimestamp 
+			USART::sendInt(uint16_t(stored & SHORT_TIMESTAMP_MASK));
+		}
+}
+
+uint32_t lastCheckedTimestampMode2 = 0;
+
 void loop() {
 	// Mode 1
 	if (App::config.mode == APP_MODE_1){
@@ -53,5 +62,17 @@ void loop() {
 			USART::sendInt32(App::timestamp);
 			USART::sendInt(Analog::concatValueWithSensor(Analog::values[2], SENSOR_ADDRESS_C));
 		}
+	}
+
+	// Mode 2
+	else if (App::config.mode == APP_MODE_2 && (App::timestamp % (App::config.delay_Mode_2 * 1000) == 0) && App::timestamp != lastCheckedTimestampMode2){ // Send data on each delay once
+		lastCheckedTimestampMode2 = App::timestamp;
+		printAllAnalogCachedBuffer(COMMAND_SEND_MODE2_DATA);
+	}
+
+	// Mode 3
+	else if (App::config.mode == APP_MODE_3 && App::sendAllDataFlag){
+		App::sendAllDataFlag = false;
+		printAllAnalogCachedBuffer(COMMAND_GET_DATA);
 	}
 }

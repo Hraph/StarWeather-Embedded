@@ -10,11 +10,16 @@ namespace IO {
     }
 
     ISR(ADC_vect) {
+        uint32_t timeToCache = ((Application::App::timestamp & SHORT_TIMESTAMP_MASK) << 16); // Add short timestamp (of 2 bytes) (max 65 seconds)
+
         //Get measure of current MUX
         switch(MUXn_MASK & ADMUX){
             case SENSOR_ADDRESS_A:
                 Analog::values[0] = ADCL; // Left
                 Analog::values[0] |= ((uint16_t)ADCH) << 8; // Right
+
+                timeToCache |= Analog::concatValueWithSensor(Analog::values[0], SENSOR_ADDRESS_A); // Add value
+                Analog::cacheBuffer.push(timeToCache);
 
                 Analog::updatedValueFlags[0] = true;
                 Analog::checkValueFlags[0] = false;
@@ -23,12 +28,18 @@ namespace IO {
                 Analog::values[1] = ADCL; // Left
                 Analog::values[1] |= ((uint16_t)ADCH) << 8; // Right
 
+                timeToCache |= Analog::concatValueWithSensor(Analog::values[1], SENSOR_ADDRESS_B); // Add value
+                Analog::cacheBuffer.push(timeToCache);
+
                 Analog::updatedValueFlags[1] = true;
                 Analog::checkValueFlags[1] = false;
             break;
             case SENSOR_ADDRESS_C:
                 Analog::values[2] = ADCL; // Left
                 Analog::values[2] |= ((uint16_t)ADCH) << 8; // Right
+
+                timeToCache |= Analog::concatValueWithSensor(Analog::values[2], SENSOR_ADDRESS_C); // Add value
+                Analog::cacheBuffer.push(timeToCache);
 
                 Analog::updatedValueFlags[2] = true;
                 Analog::checkValueFlags[2] = false;
@@ -53,4 +64,6 @@ namespace IO {
     unsigned int Analog::values[SENSORS_COUNT] = {0};
     bool Analog::updatedValueFlags[SENSORS_COUNT] = {false}; 
     bool Analog::checkValueFlags[SENSORS_COUNT] = {false}; 
+
+    CircularBuffer<uint32_t, 300> Analog::cacheBuffer;
 }

@@ -22,6 +22,7 @@ namespace Application {
         static void loadConfig();
         static void saveConfig();
         static volatile uint32_t timestamp;
+        static bool sendAllDataFlag;
     private:
     };
 }
