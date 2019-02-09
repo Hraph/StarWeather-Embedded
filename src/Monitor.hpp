@@ -1,7 +1,7 @@
 #ifndef MONITOR_H
 #define MONITOR_H
 
-#include <Arduino.h>
+#include "avr/io.h"
 #include "Config.hpp"
 #include "App.hpp"
 
@@ -43,7 +43,6 @@ namespace Communication {
     class Monitor {
     public:
         static void sendCommandResponse(uint8_t commandType, uint8_t responseCode);
-        static void sendCommandData(uint8_t commandType, uint32_t data);
         static void sendConfig(Application::Config config);
         inline static void processReceivedMonitorChar(uint8_t input);
         inline static void processCommand(uint8_t commandType, uint8_t parameter = 0);

@@ -6,10 +6,6 @@ namespace Communication {
         printf("%c%c", commandType, responseCode);
     }
 
-    void Monitor::sendCommandData(uint8_t commandType, uint32_t data){
-        
-    }
-
     void Monitor::sendConfig(Application::Config config){
         printf("%c%c%c%c%c", COMMAND_GET_CONFIG, config.frequencySensor_A, config.frequencySensor_B, config.frequencySensor_C, config.delay_Mode_2);
         //TODO send current mode
@@ -44,9 +40,7 @@ namespace Communication {
                 }
                 break;
             default:
-                cli();
                 processCommand(input);
-                sei();
                 break;
         }
     }

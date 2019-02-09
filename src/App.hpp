@@ -1,8 +1,8 @@
 #ifndef APP_H
 #define APP_H
 
-#include <Arduino.h>
-
+#include "avr/io.h"
+#include "stdint.h"
 #include "Config.hpp"
 #include "EEPROM.hpp"
 #include "Analog.hpp"

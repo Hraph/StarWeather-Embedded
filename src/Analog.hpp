@@ -1,7 +1,9 @@
 #ifndef ANALOG_H
 #define ANALOG_H
 
-#include <Arduino.h>
+#include "avr/io.h"
+#include "avr/interrupt.h"
+#include "stdint.h"
 #include "Config.hpp"
 #include "App.hpp"
 #include "CircularBuffer.hpp"

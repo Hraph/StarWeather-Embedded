@@ -5,6 +5,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 namespace Helper {
 	template<bool FITS8, bool FITS16> struct Index {
