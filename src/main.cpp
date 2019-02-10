@@ -43,7 +43,8 @@ int main(){
 		printf("MODE:%d - F1: %d - F2: %d -  F3: %d - DELAY MODE 2: %d\n", App::config.mode, App::config.frequencySensor_A, App::config.frequencySensor_B, App::config.frequencySensor_C, App::config.delay_Mode_2);
 	#endif // DEBUG
 	
-	App::config.mode = APP_MODE_1;
+	App::updateLEDModeColor(); // Launch check
+
 	sei(); // Allow interrupt
 
 	// Loop

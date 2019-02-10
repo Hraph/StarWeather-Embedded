@@ -65,5 +65,5 @@ namespace IO {
     bool Analog::updatedValueFlags[SENSORS_COUNT] = {false}; 
     bool Analog::checkValueFlags[SENSORS_COUNT] = {false}; 
 
-    CircularBuffer<uint32_t, 300> Analog::cacheBuffer;
+    CircularBuffer<uint32_t, CACHEBUFFER_CAPACITY> Analog::cacheBuffer;
 }

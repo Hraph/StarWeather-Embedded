@@ -12,6 +12,10 @@ namespace Application {
         TCCR1B = (1 << WGM12) | (1 << CS10); // Prescaler of 1
         TCNT1 = 65535 - 16000; // 1ms
         TIMSK1 = (1 << TOIE1); // Activate interrupts
+
+        // Initialize LEDs
+        DDRD |= (MSK_LEDR | MSK_LEDG | MSK_LEDB); // 1: output
+        PORTD |= (MSK_LEDR | MSK_LEDG | MSK_LEDB); // pull up
     }
 
     // 1ms tick timer
@@ -67,6 +71,32 @@ namespace Application {
         #ifdef DEBUG_COMMANDS
             printf("\nConfiguration saved\n");
         #endif // DEBUG
+    }
+
+    void App::updateLEDModeColor(){
+        switch (config.mode)
+        {
+            case APP_MODE_STOP:
+                // Switch off
+                PORTD |= ~(MSK_LEDR) | ~(MSK_LEDG) | ~(MSK_LEDB);
+                
+                break;
+        
+            case APP_MODE_1:
+                PORTD |= (MSK_LEDR);
+                PORTD &= ~(MSK_LEDG) & ~(MSK_LEDB);
+                break;
+
+            case APP_MODE_2:
+                PORTD |= (MSK_LEDG);
+                PORTD &= ~(MSK_LEDR) & ~(MSK_LEDB);
+                break;
+
+            case APP_MODE_3:
+                PORTD |= (MSK_LEDB);
+                PORTD &= ~(MSK_LEDG) & ~(MSK_LEDR);
+                break;
+        }
     }
 
     volatile uint32_t App::timestamp = 0;

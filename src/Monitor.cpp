@@ -54,6 +54,7 @@ namespace Communication {
 
 				Application::App::config.mode = APP_MODE_STOP;
 				Application::App::saveConfig();
+                Application::App::updateLEDModeColor();
 				Monitor::sendCommandResponse(COMMAND_STOP_MODE, COMMAND_RESPONSE_SUCCESS);
 				break;
 			case COMMAND_START_MODE_1:
@@ -63,6 +64,7 @@ namespace Communication {
 
 				Application::App::config.mode = APP_MODE_1;
 				Application::App::saveConfig();
+                Application::App::updateLEDModeColor();
 				Monitor::sendCommandResponse(COMMAND_START_MODE_1, COMMAND_RESPONSE_SUCCESS);
 				break;
 			case COMMAND_START_MODE_2:
@@ -72,6 +74,7 @@ namespace Communication {
 
 				Application::App::config.mode = APP_MODE_2;
 				Application::App::saveConfig();
+                Application::App::updateLEDModeColor();
 				Monitor::sendCommandResponse(COMMAND_START_MODE_2, COMMAND_RESPONSE_SUCCESS);
 				break;
 			case COMMAND_START_MODE_3:
@@ -81,6 +84,7 @@ namespace Communication {
 
 				Application::App::config.mode = APP_MODE_3;
 				Application::App::saveConfig();
+                Application::App::updateLEDModeColor();
 				Monitor::sendCommandResponse(COMMAND_START_MODE_3, COMMAND_RESPONSE_SUCCESS);
 				break;
 			case COMMAND_CONFIGURE_FE_1:
