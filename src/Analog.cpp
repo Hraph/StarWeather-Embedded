@@ -10,7 +10,7 @@ namespace IO {
     }
 
     ISR(ADC_vect) {
-        uint32_t timeToCache = ((Application::App::timestamp & SHORT_TIMESTAMP_MASK) << 16); // Add short timestamp (of 2 bytes) (max 65 seconds)
+        uint32_t timeToCache = ((Application::App::timestamp & SHORT_TIMESTAMP_MASK) << 20); // Add short timestamp (of 20 bits bytes) (max 1048 seconds)
 
         //Get measure of current MUX
         switch(MUXn_MASK & ADMUX){

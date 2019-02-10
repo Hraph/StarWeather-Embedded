@@ -21,7 +21,7 @@ inline void printAllAnalogCachedBuffer(uint8_t command){
 		for(uint16_t i = 0; i < size; ++i){
 			uint32_t stored = Analog::cacheBuffer.shift();
 
-			USART::sendInt32((App::timestamp & ASSEMBLE_SHORT_TIMESTAMP_MASK) | ((stored & ASSEMBLE_SHORT_TIMESTAMP_MASK) >> 16)); // Assemble timestamp with splitted shortTimestamp 
+			USART::sendInt32((App::timestamp & ASSEMBLE_SHORT_TIMESTAMP_MASK) | ((stored & ASSEMBLE_SHORT_TIMESTAMP_MASK) >> 20)); // Assemble timestamp with splitted shortTimestamp 
 			USART::sendInt(uint16_t(stored & SHORT_TIMESTAMP_MASK));
 		}
 	}

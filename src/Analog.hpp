@@ -8,8 +8,8 @@
 #include "App.hpp"
 #include "CircularBuffer.hpp"
 
-#define SHORT_TIMESTAMP_MASK 0xFFFF
-#define ASSEMBLE_SHORT_TIMESTAMP_MASK 0xFFFF0000
+#define SHORT_TIMESTAMP_MASK 0xFFFFF // 20 bits of short timestamp
+#define ASSEMBLE_SHORT_TIMESTAMP_MASK 0xFFFFF000
 
 #pragma once
 
